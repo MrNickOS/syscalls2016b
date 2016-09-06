@@ -1,0 +1,38 @@
+# include <stdio.h>
+
+
+main(int argc, char **argv) {
+    int number = fork();
+    if (number == 0){
+        
+    } else if (number == -1) {
+        falloLlamada();
+    } else {
+        
+    }
+    
+}
+
+procesoPadre(int milli){
+
+}
+
+procesoHijo(int milli){
+
+}
+
+falloLlamada(){
+    printf("Lo sentimos, hubo un problema haciendo esta llamada ...");
+    sleep(3000);
+    printf("En este momento se generará un reporte de fallo");
+    int arch = open("reporte.txt", O_RDWR|O_CREAT, 0700);
+    write(arch, "Fallo en llamada del sistema #1431", 35);
+    
+    time_t tiempoAct = time(NULL);
+    struct_tm *horaFecha = localtime(tiempoActual);
+    char timeStr[80];
+    strftime(timeStr, 80, "%H:%M:%D", horaFecha);
+    
+    write(arch, timeStr, 80);
+    close(arch);
+}
