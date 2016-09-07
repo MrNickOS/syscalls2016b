@@ -4,35 +4,51 @@
 main(int argc, char **argv) {
     int number = fork();
     if (number == 0){
-        
+        printf("Ejecución del proceso hijo con ID ", getpid());
+        printf("Proceso padre asociado con ID ", getppid());
+        procesoHijo();
     } else if (number == -1) {
         falloLlamada();
     } else {
-        
+        printf("Ejecución del proceso padre con ID ", getpid());
+        procesoPadre();
     }
-    
+    printf("Terminando programa");
+    exit(0);
 }
 
-procesoPadre(int milli){
-
+procesoPadre(){
+    sleep(4000);
+    int random1 = rand() % 21;
+    int random2 = (rand() % 21) + 30;
+    printf("Numeros aleatorios generados. Sumando ...");
+    sleep(2000);
+    int randsum = random1 + random2;
+    printf("Suma realizada.  El resultado es: ", randsum);
 }
 
-procesoHijo(int milli){
-
+procesoHijo(){
+    sleep(4000);
+    int r1 = (rand() % 21) + 30;
+    int r2 = rand() % 21;
+    printf("Restando numeros aleatorios ...");
+    sleep(2500);
+    int randresta = r1 - r2;
+    printf("El resultado de la resta aleatoria es: ", randresta);
 }
 
 falloLlamada(){
-    printf("Lo sentimos, hubo un problema haciendo esta llamada ...");
+    printf("Lo sentimos, hubo un problema realizando esta llamada ...");
     sleep(3000);
-    printf("En este momento se generará un reporte de fallo");
+    printf("En este momento se generará un reporte de fallo ...");
     int arch = open("reporte.txt", O_RDWR|O_CREAT, 0700);
     write(arch, "Fallo en llamada del sistema #1431", 35);
     
     time_t tiempoAct = time(NULL);
     struct_tm *horaFecha = localtime(tiempoActual);
     char timeStr[80];
-    strftime(timeStr, 80, "%H:%M:%D", horaFecha);
-    
+    strftime(timeStr, 80, "%H:%M:%S", %A/%B/%Y, horaFecha);
+    timeStr = "" + timeStr;
     write(arch, timeStr, 80);
     close(arch);
 }
